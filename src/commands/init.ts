@@ -6,6 +6,10 @@ import * as os from 'os'
 import * as path from 'path'
 import { ethers } from 'ethers'
 
+
+//use this string to generate a config file stored locoally on the machine that holds private data
+//such as private kets address and and seed keys for generating new accounts ans well as RPCs etc discord ids etc
+//this init is only run once then you manually have to edit the file with the correct values 
 const tpl = `mnemonic: {{mnemonic}} # Change to your custom mnemonic if you like
 rpc_url: https://arb1.arbitrum.io/rpc
 discord_token: "<discord_token>" # Discord application token required to run as Discord bot
@@ -15,7 +19,10 @@ discord_id: "<discord_id>" # ID of your Discord user to receive DMs
 # You an add custom accounts to any index below using a private key
 # account_3: <private_key>
 # account_4: <private_key>
-`
+` 
+
+//discord token for bot was got like this https://github.com/reactiflux/discord-irc/wiki/Creating-a-discord-bot-&-getting-a-token
+
 
 const command: GluegunCommand = {
   name: 'init',
@@ -29,6 +36,7 @@ const command: GluegunCommand = {
       mnemonic: ethers.Wallet.createRandom().mnemonic.phrase,
     })
 
+    
     const homedir = os.homedir()
     const CONFIG_DIR = path.join(homedir, '.config', 'bwbot')
 

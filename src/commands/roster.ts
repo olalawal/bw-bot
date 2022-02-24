@@ -23,7 +23,7 @@ const command: GluegunCommand = {
     }
 
     const spinner = toolbox.print.spin(`Loading roster...\n`).start()
-    const recruits = await loadRecruits(parseInt(amount) || 5)
+    const recruits = await loadRecruits(parseInt(amount) || 20)
 
     showRecruits(recruits)
     let ethTotal = ethers.BigNumber.from('0')
